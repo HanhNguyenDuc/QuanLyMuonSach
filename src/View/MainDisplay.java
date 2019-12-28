@@ -34,18 +34,19 @@ public class MainDisplay extends javax.swing.JFrame {
     InOutFile iof = new InOutFile();
             
     
-    DefaultTableModel dtmBanDoc, dtmSach, dtmQLMS;
+    DefaultTableModel dtmBanDoc, dtmSach, dtmQLMS, dtmSeach;
     public MainDisplay() {
         
         initComponents();
         dtmBanDoc = (DefaultTableModel) jTable2.getModel();
         dtmSach = (DefaultTableModel) jTable1.getModel();
         dtmQLMS = (DefaultTableModel) jTable3.getModel();
-        
+        dtmSeach = (DefaultTableModel) seachTable.getModel();
         
         arrSach = new ArrayList<Sach>();
         arrBanDoc = new ArrayList<BanDoc>();
         arrQLMS = new ArrayList<QLMS>();
+        
         
         iof.readFile(arrSach, sachPath);
         iof.readFile(arrBanDoc, banDocPath);
@@ -119,6 +120,15 @@ public class MainDisplay extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        seachTable = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        searchBySachField = new javax.swing.JTextField();
+        searchByBanDocField = new javax.swing.JTextField();
+        seachBySachButton = new javax.swing.JButton();
+        searchByBanDocButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -360,7 +370,7 @@ public class MainDisplay extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -375,12 +385,12 @@ public class MainDisplay extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton7)
-                        .addGap(86, 86, 86)
+                        .addGap(40, 40, 40)
                         .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
                         .addComponent(jButton9)))
-                .addGap(53, 53, 53)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,11 +416,81 @@ public class MainDisplay extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Quản lý mượn sách", jPanel3);
 
+        seachTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Bạn đọc", "Sách", "Số lượng"
+            }
+        ));
+        jScrollPane4.setViewportView(seachTable);
+
+        jLabel11.setText("Tìm kiếm theo tên sách");
+
+        jLabel12.setText("Tìm kiếm theo tên sách");
+
+        seachBySachButton.setText("Tìm kiếm");
+        seachBySachButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                seachBySachButtonActionPerformed(evt);
+            }
+        });
+
+        searchByBanDocButton.setText("Tìm kiếm");
+        searchByBanDocButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchByBanDocButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel11)
+                        .addComponent(jLabel12)
+                        .addComponent(searchBySachField)
+                        .addComponent(searchByBanDocField, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                    .addComponent(seachBySachButton)
+                    .addComponent(searchByBanDocButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchBySachField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(seachBySachButton)
+                .addGap(135, 135, 135)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchByBanDocField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(searchByBanDocButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Tìm kiếm", jPanel4);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,6 +599,34 @@ public class MainDisplay extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void seachBySachButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBySachButtonActionPerformed
+        String searchContent = searchBySachField.getText();
+        dtmSeach.setRowCount(0);
+        System.out.println(searchContent);
+        for (Object o : arrQLMSElement){
+            QLMSElement qle = (QLMSElement)o;
+            System.out.println(Integer.toString(qle.getBanDocID()));
+            if (Integer.toString(qle.getBanDocID()).indexOf(searchContent) != -1){
+                dtmSeach.addRow(new Object[]{qle.getBanDocID(), qle.getSachID(), qle.getSoLuong()});
+            
+            }
+        }
+    }//GEN-LAST:event_seachBySachButtonActionPerformed
+
+    private void searchByBanDocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchByBanDocButtonActionPerformed
+        String searchContent = searchByBanDocField.getText();
+        dtmSeach.setRowCount(0);
+        System.out.println(searchContent);
+        for (Object o : arrQLMSElement){
+            QLMSElement qle = (QLMSElement)o;
+            System.out.println(Integer.toString(qle.getBanDocID()));
+            if (Integer.toString(qle.getBanDocID()).indexOf(searchContent) != -1){
+                dtmSeach.addRow(new Object[]{qle.getBanDocID(), qle.getSachID(), qle.getSoLuong()});
+            
+            }
+        }
+    }//GEN-LAST:event_searchByBanDocButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -569,6 +677,8 @@ public class MainDisplay extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -580,9 +690,11 @@ public class MainDisplay extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -590,6 +702,11 @@ public class MainDisplay extends javax.swing.JFrame {
     private javax.swing.JTextField namSanXuatField;
     private javax.swing.JTextField sachQLField;
     private javax.swing.JTextField sdtField;
+    private javax.swing.JButton seachBySachButton;
+    private javax.swing.JTable seachTable;
+    private javax.swing.JButton searchByBanDocButton;
+    private javax.swing.JTextField searchByBanDocField;
+    private javax.swing.JTextField searchBySachField;
     private javax.swing.JTextField soLuongField;
     private javax.swing.JTextField tacGiaField;
     private javax.swing.JTextField tenField;
